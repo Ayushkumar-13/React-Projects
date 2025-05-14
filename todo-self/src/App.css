@@ -1,0 +1,34 @@
+
+button:disabled {
+  opacity: 0.3;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Kaushan+Script&display=swap');
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+Add custom word break handling
+.overflow-wrap-break-word {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Handle long unbroken strings */
+.task-item-container {
+  min-height: 72px;
+}
+
+/* Custom break-word handling */
+.break-words {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Prevent horizontal overflow */
+.task-item-container {
+  overflow-x: hidden;
+}         
+
