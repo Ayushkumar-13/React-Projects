@@ -1,0 +1,35 @@
+.sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, 45px);
+  gap: 2px;
+  margin: 20px auto;
+  width: max-content;
+  border: 3px solid #333;
+  padding: 5px;
+  background: #f9f9f9;
+}
+
+.cell {
+  width: 45px;
+  height: 45px;
+  font-size: 22px;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #999;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cell-light {
+  background-color: #eaeaea;
+}
+
+.cell-dark {
+  background-color: #fff;
+}
+
+.cell:focus {
+  border-color: #007bff;
+  background-color: #d0e8ff;
+}
