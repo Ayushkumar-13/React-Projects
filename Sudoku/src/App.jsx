@@ -1,11 +1,12 @@
-import React from 'react';
-import { SudokuProvider } from './context/SudokuContext';
-import GamePage from './pages/GamePage';
+import React from 'react'
+import { Outlet } from 'react-router-dom'
 
-export default function App() {
+function App() {
   return (
-    <SudokuProvider>
-      <GamePage />
-    </SudokuProvider>
-  );
+    <div className='h-screen overflow-hidden flex flex-col justify-center items-center gap-10'> 
+      <Outlet> </Outlet>
+    </div>
+  )
 }
+
+export default App
