@@ -96,12 +96,12 @@ export function sudoku(mode) {
         if (!randomArray.includes(num))
             randomArray.push(num)
     }
-    generateSudoku(solvedBoard, randomArray)
+    generateSudoku(solvedBoard, randomArray) 
     let unSolvedBoard = solvedBoard.map(row => row.map(num => num))
     removeCells(unSolvedBoard, no_of_cell)
     unSolvedBoard = unSolvedBoard.map(row => {
         return row.map(num => {
-            if (!num == 0) {
+            if (num !== 0) {
                 return {
                     value: num,
                     default: true,
@@ -115,5 +115,7 @@ export function sudoku(mode) {
                 }
         })
     })
+
     return {solvedBoard,unSolvedBoard}
+
 }
