@@ -5,12 +5,16 @@ const TaskItem = ({ ele, deleteTask, editTask, isEditing, setIsEditing, toggleCo
   const [editText, setEditText] = useState(ele.task);
   const textareaRef = useRef(null);
 
-  useEffect(() => {
-    if (textareaRef.current && isEditing === ele.id) {
-      textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
-    }
-  }, [editText, isEditing, ele.id]);
+ useEffect(() => {
+  if (textareaRef.current && isEditing === ele.id) {
+    const textarea = textareaRef.current;
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+    textarea.focus();
+    textarea.setSelectionRange(textarea.value.length, textarea.value.length); // Move cursor to end
+  }
+}, [isEditing, ele.id]);
+
 
   const handleSave = () => {
     if (editText === "") return;
@@ -20,7 +24,7 @@ const TaskItem = ({ ele, deleteTask, editTask, isEditing, setIsEditing, toggleCo
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault(); // Prevents adding a new line
+      e.preventDefault();
       handleSave();
     }
   };
@@ -30,7 +34,7 @@ const TaskItem = ({ ele, deleteTask, editTask, isEditing, setIsEditing, toggleCo
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, x: -50 }}
-      className="p-4 hover:bg-gray-50 transition-colors duration-200 relative"
+      className="p-4 hover:bg-gray-50 transition-colors duration-200 relative overflow-x-hidden"
     >
       <div className="flex items-start gap-3 min-h-[46px]">
         <input
@@ -49,7 +53,7 @@ const TaskItem = ({ ele, deleteTask, editTask, isEditing, setIsEditing, toggleCo
               autoFocus
               value={editText}
               onChange={(e) => setEditText(e.target.value)}
-              onKeyDown={handleKeyDown} // Listen for Enter key
+              onKeyDown={handleKeyDown}
               className="w-full px-3 py-1 text-lg border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none overflow-hidden whitespace-pre-wrap"
               rows={1}
             />
@@ -63,10 +67,17 @@ const TaskItem = ({ ele, deleteTask, editTask, isEditing, setIsEditing, toggleCo
           </div>
         ) : (
           <>
-            <p className={`flex-1 text-gray-800 text-lg break-words whitespace-pre-wrap pr-35 ${
-              ele.completed ? 'line-through opacity-75' : ''
-            }`}>
+            <p
+              className={`flex-1 text-gray-800 text-lg pr-35 break-words whitespace-pre-wrap ${ele.completed ? 'line-through opacity-75' : ''
+                }`}
+            >
               {ele.task}
+              <br />
+              <span className="text-sm text-gray-500 block mt-1">
+                {ele.completed
+                  ? `Completed: ${ele.completedAt}`
+                  : `Added: ${ele.createdAt}`}
+              </span>
             </p>
 
             <div className="flex gap-2 absolute right-4 top-4">
