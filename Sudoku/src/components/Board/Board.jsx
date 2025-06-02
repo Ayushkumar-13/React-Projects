@@ -21,7 +21,7 @@ function Board() {
             }
             {
                 isComplete && <div className='text-2xl w-full bg-slate-700 border z-10 shadow-lg border-black p-10 rounded-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-                    {mistake >= totalMistakes ?  <div className='text-center'> <p><b>Game Over ☠️ </b> All Mistakes Used </p></div> : <span>Very Good!! </span> }
+                    {mistake >= totalMistakes ?  <div className='text-center'> <p><b>Game Over ☠️ </b> All Mistakes Used </p></div> : <span> You Won 🏆 </span> }
                     <div className='flex items-center p-5 justify-around'>
                         <button onClick={() => tryAgain()} className="option bg-slate-900 p-3 rounded-md hover:bg-slate-800  active:scale-90" >
                             Try Again
